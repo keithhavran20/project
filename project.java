@@ -16,8 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -40,7 +39,7 @@ public class project extends Application {
         tbl = new TableView<>();
         Alert alerts = new Alert(Alert.AlertType.INFORMATION);
         Alert alerts2 = new Alert(Alert.AlertType.ERROR);
-        Scene sc1, sc2, sc3;
+        Scene sc1, sc2, sc3, sc4;
         sc1 = new Scene(new Group());
         s.sizeToScene();
         s.setTitle("Project");
@@ -68,16 +67,16 @@ public class project extends Application {
 
 
 
-        TableColumn item = new TableColumn("Item Name");
+        TableColumn item = new TableColumn("Item");
         item.setMinWidth(100);
 
-        item.setCellValueFactory(new PropertyValueFactory<storage, String>("Item Name"));
+        item.setCellValueFactory(new PropertyValueFactory<storage, String>("name"));
 
 
 
-        TableColumn code = new TableColumn("Item Code");
-        code.setMinWidth(20);
-        code.setCellValueFactory(new PropertyValueFactory<storage, Integer>("Item Code"));
+        TableColumn itemCode = new TableColumn("Item Code");
+        itemCode.setMinWidth(20);
+        itemCode.setCellValueFactory(new PropertyValueFactory<storage, Integer>("code"));
 
         TableColumn q = new TableColumn("Quantity");
         q.setMinWidth(10);
@@ -94,7 +93,7 @@ public class project extends Application {
         tbl.setEditable(true);
         tbl.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY );
         tbl.setItems(data);
-        tbl.getColumns().addAll(item, code, q, price, discount);
+        tbl.getColumns().addAll(item, itemCode, q, price, discount);
         vb1.getChildren().addAll(l1, tbl);
 
 
@@ -147,6 +146,7 @@ public class project extends Application {
             }
         };
         b2.setOnAction(event1);
+
         EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>()
         {
             @Override
@@ -168,6 +168,7 @@ public class project extends Application {
         ((Group) sc1.getRoot()).getChildren().add(bp);
         s.setScene(sc1);
         s.show();
+
 
         Label ul2 = new Label("Enter the item name");
         ul2.setFont(new Font("Courier", 14));
@@ -197,27 +198,27 @@ public class project extends Application {
         g2.add(td2, 1, 4);
 
 
-        Label lu= new Label();
+        Label stamp= new Label();
         g2.setPadding(new Insets(10, 10, 10, 10));
         g2.setHgap(10);
         g2.setVgap(10);
-        vb3.getChildren().addAll(ul2, g2, b12, lu);
+        vb3.getChildren().addAll(ul2, g2, b12, stamp);
         vb3.setSpacing(10);
         vb3.setPadding(new Insets(10, 10, 10, 10));
 
-        EventHandler<ActionEvent> event22 = new EventHandler<ActionEvent>()
+        EventHandler<ActionEvent> event10 = new EventHandler<ActionEvent>()
         {
             @Override
 
             public void handle(ActionEvent event)
             {
-                String sid = ti2.getText();
+                String twenty = ti2.getText();
                 boolean f=false;
                 for (int i = 0; i < tbl.getItems().size(); i++)
                 {
-                    if (((String)tbl.getItems().get(i).getName()).equals(sid))
+                    if (((String)tbl.getItems().get(i).getName()).equals(twenty))
                     {
-                        storage p = new storage(ti2.getText(), Integer.parseInt(tc2.getText()), Integer.parseInt(tq.getText()), Double.parseDouble(tp.getText()), Double.parseDouble(td.getText()));
+                        storage p = new storage(ti2.getText(), Integer.parseInt(tc2.getText()), Integer.parseInt(tq2.getText()), Double.parseDouble(tp2.getText()), Double.parseDouble(td2.getText()));
                         tbl.getItems().set(i, p);
                         f=true;
                     }
@@ -234,7 +235,7 @@ public class project extends Application {
                 {
                     alerts2.setTitle("Error");
                     alerts2.setHeaderText(null);
-                    alerts2.setContentText("Enetered Person's ID not found..");
+                    alerts2.setContentText("Item not found..");
                     alerts2.showAndWait();
                 }
                 ti2.clear();
@@ -242,9 +243,10 @@ public class project extends Application {
                 s.setScene(sc1);
             }
         };
-        b12.setOnAction(event22); // update button
+        b12.setOnAction(event10);
 
         sc2 = new Scene(vb3, 400, 200);
+
         EventHandler<ActionEvent> event3 = new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent event)
@@ -257,7 +259,7 @@ public class project extends Application {
 
 
         VBox vb4= new VBox();
-        Label rl= new Label("Enter the Person's name to remove");
+        Label rl= new Label("Enter the item name to remove");
         TextField tr= new TextField();
         Button dl= new Button("Delete");
         vb4.getChildren().addAll(rl, tr, dl);
@@ -308,6 +310,17 @@ public class project extends Application {
             }
         };
         b4.setOnAction(event4);
+
+        EventHandler<ActionEvent> event5 = new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent event)
+            {
+                System.out.print(data);
+            }
+        };
+        b5.setOnAction(event5);
+
+
 
     }
 

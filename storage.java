@@ -1,25 +1,23 @@
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
-public class storage
-{
+public class storage {
     private SimpleStringProperty name;
     private SimpleIntegerProperty code;
-    private SimpleDoubleProperty price;
     private SimpleIntegerProperty quantity;
+    private SimpleDoubleProperty price;
     private SimpleDoubleProperty discount;
 
     public storage(String n, int a, int b, double x, double y)
     {
-        name= new SimpleStringProperty(n);
-        code= new SimpleIntegerProperty(a);
-        quantity = new SimpleIntegerProperty(b);
-        price = new SimpleDoubleProperty(x);
-        discount = new SimpleDoubleProperty(y);
-    }
+        name=new SimpleStringProperty(n);
+        code=new SimpleIntegerProperty(a);
+        quantity=new SimpleIntegerProperty(b);
+        price=new SimpleDoubleProperty(x);
+        discount=new SimpleDoubleProperty(y);
 
-    ////////////////////////////////////////////////////////////////////////////
+    }
 
     public String getName()
     {
@@ -46,7 +44,7 @@ public class storage
         return discount.get();
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
 
     public void setName(String n)
     {
@@ -63,15 +61,17 @@ public class storage
         quantity.set(j);
     }
 
-    public void setPrice(double a)
+    public void setPrice(double m)
     {
-        price.set(a);
+        price.set(m);
     }
 
-    public void setDiscount(double b)
+    public void setDiscount(double n)
     {
-        discount.set(b);
+        discount.set(n);
     }
+
+
 
 
 }
